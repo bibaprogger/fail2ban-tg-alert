@@ -5,7 +5,7 @@ import re
 
 REGEX = r'(?P<dt>[0-9]{,4}-[0-9]{,2}-[0-9]{,2} [0-9]{2}:[0-9]{2}:[0-9]{2},[0-9]{3}) ' \
         + r'fail2ban\.(?P<source>(observer|filter|actions)\s+) ' \
-        + r'\[(?P<id>[0-9]+)\]: (?P<severity>(WARNING|NOTICE|INFO)\s+) ' \
+        + r'\[(?P<pid>[0-9]+)\]: (?P<severity>(WARNING|NOTICE|INFO)\s+) ' \
         + r'\[(?P<service>.*)\] (?P<action>(Ban|Unban)) (?P<ip>(\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b))'
 
 
@@ -19,7 +19,7 @@ ParseResultType = Dict[str, str]
 class ParseResult:
         dt: str
         source: str
-        id: str
+        pid: str
         severity: str
         service: str
         action: str
