@@ -39,7 +39,6 @@ def mainloop(logfile) -> None:
                 send_telegram_message(parsed_data['action'], parsed_data['ip'], parsed_data['dt'])
 
 
-
 def main() -> None:
     logfile = open(LOGNAME, 'r')
     mainloop(logfile)
