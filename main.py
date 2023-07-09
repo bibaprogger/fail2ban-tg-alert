@@ -9,14 +9,14 @@ LOGNAME = '/var/log/fail2ban.log'
 
 
 def send_telegram_message(action: str, ip: str, dt: str) -> None:
-    TOKEN = 'your token'
-    CHAT_ID = 'your chat id'
+    TOKEN = '5878794044:AAGQBZyT1NyN6JoFrt675EcHTMT-zrQlAZ4'
+    CHAT_ID = '-879794776'
     message = f'[ALERT] {dt} {action} {ip}'
     url = f'https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={CHAT_ID}&text={message}'
-    requests.post(url)
+    requests.get(url)
 
 
-def tail(file) -> None:
+def tail(file):
     file.seek(0,2)
     inode = os.fstat(file.fileno()).st_ino
 
