@@ -3,16 +3,15 @@ from f2b_parser import parse
 import requests
 import time
 import os
+from config import TOKEN, CHAT_ID, THREAD_ID
 
 
 LOGNAME = '/var/log/fail2ban.log'
 
 
 def send_telegram_message(action: str, ip: str, dt: str) -> None:
-    TOKEN = '5878794044:AAGQBZyT1NyN6JoFrt675EcHTMT-zrQlAZ4'
-    CHAT_ID = '-879794776'
     message = f'[ALERT] {dt} {action} {ip}'
-    url = f'https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={CHAT_ID}&text={message}'
+    url = f'https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={CHAT_ID}&message_thread_id={THREAD_ID}&text={message}'
     requests.get(url)
 
 
