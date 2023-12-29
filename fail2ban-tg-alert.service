@@ -1,5 +1,5 @@
 [Unit]
-Description=fail2ban-notify telegram demo
+Description=fail2ban-tg-alert
 After=network.target
 
 [Service]
@@ -8,7 +8,7 @@ Restart=always
 RestartSec=60
 Group=wheel
 User=root
-ExecStart=/usr/bin/python3.9 /var/lib/fail2ban-notify/main.py
+ExecStart=/usr/bin/env python3 /var/lib/fail2ban-tg-aleret/main.py
 
 [Install]
 WantedBy=multi-user.target

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from f2b_parser import parse
+from log_parser import parse
 import requests
 import time
 import os
@@ -9,9 +9,15 @@ from config import TOKEN, CHAT_ID, THREAD_ID
 LOGNAME = '/var/log/fail2ban.log'
 
 
-def send_telegram_message(action: str, ip: str, dt: str) -> None:
+def send_to_telegram_topic(action: str, ip: str, dt: str) -> None:
     message = f'[ALERT] {dt} {action} {ip}'
     url = f'https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={CHAT_ID}&message_thread_id={THREAD_ID}&text={message}'
+    requests.get(url)
+
+
+def send_to_telegram_chat(action: str, ip: str, dt: str) -> None:
+    message = f'[ALERT] {dt} {action} {ip}'
+    url = f'https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={CHAT_ID}&text={message}'
     requests.get(url)
 
 
@@ -35,7 +41,7 @@ def mainloop(logfile) -> None:
     for line in tail(logfile):
         parsed_data = parse(line)
         if parsed_data is not None:
-                send_telegram_message(parsed_data['action'], parsed_data['ip'], parsed_data['dt'])
+                send_to_telegram_topic(parsed_data['action'], parsed_data['ip'], parsed_data['dt'])
 
 
 def main() -> None:
