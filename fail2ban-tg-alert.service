@@ -8,7 +8,7 @@ Restart=always
 RestartSec=60
 Group=wheel
 User=root
-ExecStart=/usr/bin/env python3 /var/lib/fail2ban-tg-aleret/main.py
+ExecStart=/usr/bin/env python3 /var/lib/fail2ban-tg-alert/main.py
 
 [Install]
 WantedBy=multi-user.target
